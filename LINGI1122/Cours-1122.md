@@ -14,6 +14,9 @@
 
 * Examen (15pts): écrit et exercices(en septembre = 100% de note finale).
 
+### 0.3 Dafny
+Dafny est un langage de programmation avec spécifications et vérifiacation automatique.
+
 ## I. Introduction
 ### 1.1 Programmes et bugs
 #### 1.1.1) Comment éviter les bugs? Le débogage?
@@ -71,3 +74,13 @@ Le triplet est valide ssi: S réalise Q si P (correction totale)
 
 #### 1.3.3) Les variables auxiliaires
 Les variables auxiliaires sont des variables utilisées dans les pré et/ou post qui ne sont nides variables du programme et dont la valeur ne change pas au cours de l'exécution.
+
+## II. Programmes Séquentiels
+### 2.1 Concepts clés
+**Tableau** : [P]S[R]S'[Q]≡[P]S[R],[R]S'[Q]  
+**Règle de conséquence** : Si P⇒Q alors [P][Q]
+
+|a| ≡ taille du tableau a
+
+### 2.2 La preuve
+Chaque type de preuve possède son propre pattern de preuve.
