@@ -84,3 +84,10 @@ Les variables auxiliaires sont des variables utilisées dans les pré et/ou post
 
 ### 2.2 La preuve
 Chaque type de preuve possède son propre pattern de preuve.
+
+
+
+
+# S3
+
+l'induction expérimentale n'est pas forcément valide.
