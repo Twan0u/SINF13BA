@@ -91,3 +91,10 @@ Chaque type de preuve possède son propre pattern de preuve.
 # S3
 
 l'induction expérimentale n'est pas forcément valide.
+
+# TP S3
+**L'induction** est une méthode de preuve reccursive. on prouve que K+1 est vrai si K est vrai.
+
+**L'induction simple**  : prouve K et k+1
+**L'induction Complète** : utilise nimporte quel nombre.
+**L'induction structurale** : (ex preuve d'un arbre) L'application  de l'induction simple aux strctures.
