@@ -25,3 +25,8 @@ Il existe des **canaux filaires**(téléphone, coax, optique) et des **canaux sa
 **Signaux analogiques** => **Signaux numériques** : *Numérisation*
 
 Les informations sont contenues dans la forme des signaux. Insensibles à atténuation/amplification, Sensible à la distorsion.  
+
+
+## 2. Lignes de Transmission
+caractériser  :  aténuation et distortions
+ 
