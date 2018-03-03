@@ -98,3 +98,6 @@ l'induction expérimentale n'est pas forcément valide.
 **L'induction simple**  : prouve K et k+1
 **L'induction Complète** : utilise nimporte quel nombre.
 **L'induction structurale** : (ex preuve d'un arbre) L'application  de l'induction simple aux strctures.
+
+#Cours S4
+#TP S4
