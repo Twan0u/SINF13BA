@@ -53,6 +53,21 @@ A variable in the single assignement store is unbound or a value. if it's a valu
 	 | 	try S1 catch X then S2 end
 	 | 	raise X end
 
+### 1.4 Partial values
+   ex:
+```
+declare A B C L in
+   L=[ABC]
+   {Browse L} //display [_ _ _]
+```   
+### 1.5 Dataflow principle
+   **Concept of dataflow** : the availibility drives the execution
+   ```
+   declare
+   Y=X+1 // X is unbound and the program will wait for X  
+   ```
+   if we wait, someone else need to bound this variable. so we introduce the concept of thread (State of the execution). They can be multiple threads inside the program. The execution continue when the data becomes available
+
 ## 2. Declarative programming
 
 La programmation déclarative est un type de programmation qui ne se programme pas en instructions mais en indiquant au programme à quel résultat celui-ci doit arriver. Ce qui revient à dire à un chauffeur de taxi où vous voulez aller et non lui indiquer rue par rue toutes les indications pour rentrer jusque chez vous. Le programme est ainsi plus simple. Cependant, dans certains cas, il arrive que le programme fasse des choix surprenants. Il est aussi important de noté que la programmation déclarative est une programmation composée (= elle se compose de différentes parties pour former des parties plus grandes)
@@ -79,8 +94,103 @@ Il existe plusieurs notations pour décrire l'efficience : theta(borne minimum),
 La programmation de haut degré est une programmation qui accepte une fonction comme argument d'une autre fonction.   
 
 ### 2.5 Genericity
+La généricité est une des conséquences du High-order programming, elle permet l'utilisation de différentes fonctions placés en argument comme input de celle-ci (Ex: La fonction map prends une fonction et une liste en argument. la fonction map applique la fonction en argument à chaque élément de la liste)
 
-(...)
+### 2.6 Embedding
+Les procédures peuvent être mises dans une structure de données, ce qui leur donne plusieurs usages :
+* Explicit lazy evaluation (=exécution différée) : construit une petite partie de la structure et le reste en fonction des besoins sur le translated
+* Modules : un Record qui groupe ensemble un set d'opérations ensemble
+* Software Components : Un ensemble de modules en input et output d'un nouveau modules. On importe ainsi seulement ce dont on a besoin de chaque module
+
+### 2.7 Data techniques (pattern matching)
+#### List
+```
+case L
+  of nil then ...
+  []X|Xr then ...
+  else ...
+end
+```
+#### Trees
+```
+case T
+  of nil then ...
+  [] ??????
+end
+```
+------------------------
+
+
+
+
+
+#### Concurrency and thread
+be carefull whith this because you create a *activity* inside the system (thread) each time you unbound a varaible
+**Thread** : sequence in execution
+thread < S > end : create a thread.
+We can have multiple threads simultaniously(+- because only one cpu)
+the execution uses 'interleaving semantics' : one cpu, multiple threads that are sharing this calculation power at the same time. interleaving : the system will perform only one sequence of steps in the execution. concurrency does not apply parallelism. so no need of multiple cores.
+parallelism : small number (4-8 cores so 4-8 processes at the same time)
+concurrency : hundreds at the same time
+
+each step is the thread is choose by the scheduller (ordonnanceur).
+
+### the execution tree
+it shows all possibile exécutions (all possible ways in the execution)
+```
+declare A B C in
+thread A=1 end
+thread B=2 end
+thread C=A+B end
+```
+
+#### stream
+a non nil list is used to pass informatin trough the program
+
+```
+declare
+fun {Generate N Limit}
+   if N<Limit then
+      N|{Generate N+1 Limit}
+   else
+      nil
+   end
+end
+fun {Sum Xs A}
+   case Xs
+   of X|Xr then {Sum Xr A+X}
+   [] nil then A
+   end
+end
+
+local Xs S in
+   thread Xs = {Generate 0 15000000000} end
+   thread S = {Sum Xs 0} end
+   {Browse S}
+end
+```
+
+#### ping-pong
+a thread need to display ping pong, in alternance with thread1 saying ping and the other pong. how should threads do this ?
+threads should communicate
+```
+declare
+fun {Ping S}
+  case S of ok|T then
+  {browse ping}
+  ok|{Ping T}
+  end
+end
+fun {Pong S}
+  case S of ok|T then
+  {browse Pong}
+  ok|{Pong T}
+  end
+end
+declare S1 S2 in
+thread S2={Ping ok|S1} end //ok| is used to initialise the ping pong
+thread S1={Pong S2} end
+```
 
 ## S5 Lazy Programming
 ### S5.1 Lazy suspension
@@ -188,72 +298,6 @@ end
 
 On passe donc de O(nlog(n)) à  O(n)
 
-
-
-## S3
-### Determinstic Dataflow
-#### Single assignement variables
-Single assignement : une variable can ba bound to only one value un memory
-data structures can contains unbound variables :
-#### Partial values
-ex:
-``` oz
-declare A B C L in
-L=[ABC]
-{Browse L} //display [_ _ _]
-```
-### Dataflow principle
-**Concept of dataflow** : the availibility drives the execution
-```
-declare
-Y=X+1 // X is unbound and the program will wait for X  
-```
-if we wait, someone else need to bound this variable. so we introduce the concept of thread (State of the execution). They can be multiple threads inside the program. The execution continue when the data becomes available
-
-#### Concurrency and thread
-be carefull whith this because you create a *activity* inside the system (thread) each time you unbound a varaible
-**Thread** : sequence in execution
-thread < S > end : create a thread.
-We can have multiple threads simultaniously(+- because only one cpu)
-the execution uses 'interleaving semantics' : one cpu, multiple threads that are sharing this calculation power at the same time. interleaving : the system will perform only one sequence of steps in the execution. concurrency does not apply parallelism. so no need of multiple cores.
-parallelism : small number (4-8 cores so 4-8 processes at the same time)
-concurrency : hundreds at the same time
-
-each step is the thread is choose by the scheduller (ordonnanceur).
-
-### the execution tree
-it shows all possibile exécutions (all possible ways in the execution)
-```
-declare A B C in
-thread A=1 end
-thread B=2 end
-thread C=A+B end
-```
-
-#### stream
-a non nil list is used to pass informatin trough the program
-
-#### ping-pong
-a thread need to display ping pong, in alternance with thread1 saying ping and the other pong. how should threads do this ?
-threads should communicate
-```
-declare
-fun {Ping S}
-  case S of ok|T then
-  {browse ping}
-  ok|{Ping T}
-  end
-end
-fun {Pong S}
-  case S of ok|T then
-  {browse Pong}
-  ok|{Pong T}
-  end
-end
-declare S1 S2 in
-thread S2={Ping ok|S1} end //ok| is used to initialise the ping pong
-thread S1={Pong S2} end
-```
 #S7
 ##Message passing concurrency (ch5)
 ###Ports and port Objects
