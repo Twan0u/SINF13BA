@@ -2,7 +2,6 @@
 ## 0. Introduction
 ### 0.1 Format
 * 11 cours magistraux
-* Slides sur Moodle
 * 3-5 Séances d'exercices
 * Examen :
     - Ecrit
@@ -29,4 +28,3 @@ Les informations sont contenues dans la forme des signaux. Insensibles à attén
 
 ## 2. Lignes de Transmission
 caractériser  :  aténuation et distortions
- 

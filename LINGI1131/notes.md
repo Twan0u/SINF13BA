@@ -118,16 +118,25 @@ case T
   [] ??????
 end
 ```
-------------------------
+
+## 3. Declarative Concurrency (Sections: 4.1-4.6 + 4.8)
+The concurreny extend the declarative model.
+Putting a program in a thread does not change the final result but the result of an program can be calculated incrementaly.
+A thread is a piece of the program tha is independant and can be computed separately.
+With threads we have multiple semantics stacks ("threads") but only one Single-assignement Store.
+
+**Interleaving** : chaque thread est exécuté mais il peut n'être exécuté que d'un ou deux instructions, puis exécuter quelques instructions d'un autre thread.
 
 
-
-
-
-#### Concurrency and thread
+#### 3.0.1 Concurrency and thread
 be carefull whith this because you create a *activity* inside the system (thread) each time you unbound a varaible
 **Thread** : sequence in execution
-thread < S > end : create a thread.
+
+```
+thread < S > end
+```
+create a thread.
+
 We can have multiple threads simultaniously(+- because only one cpu)
 the execution uses 'interleaving semantics' : one cpu, multiple threads that are sharing this calculation power at the same time. interleaving : the system will perform only one sequence of steps in the execution. concurrency does not apply parallelism. so no need of multiple cores.
 parallelism : small number (4-8 cores so 4-8 processes at the same time)
@@ -135,7 +144,7 @@ concurrency : hundreds at the same time
 
 each step is the thread is choose by the scheduller (ordonnanceur).
 
-### the execution tree
+#### 3.0.2 the execution tree
 it shows all possibile exécutions (all possible ways in the execution)
 ```
 declare A B C in
@@ -144,8 +153,31 @@ thread B=2 end
 thread C=A+B end
 ```
 
-#### stream
-a non nil list is used to pass informatin trough the program
+### 3.1 Non-Determinism
+Une exécution est appelée non déterministe si il y a une étape dans l'exécution ou l'on à la possibilité de choisir quoi faire ensuite ( ex: 2 threads en même temps, lequel doit avancer? ). Le non-déterminisme apparaît dès l'apparition d'activités concurrentes. Ce choix sera effectué par l'ordonnanceur ( Scheduller )
+
+### 3.2 Browse et threads
+Le code suivant  :
+```
+thread {Browse 111} end
+thread {Browse 222} end
+```
+peut donner des résultats comme 112122 ou des erreurs car tous les caractères ne sont pas imprimés en même temps.
+
+#### Exemple programmation avec threads (Fibonnacci avec thread)
+```
+fun {Fib X}
+  if X =<2 then 1
+  else thread {Fib X-1} end  + {Fib X-2} end
+end
+```
+### 3.3 Stream
+En programmation concurrente, la technique la plus utile pour communiquer sont les stream.
+**un Stream** : une liste potentiellement non finie de messages.
+Envoyer un message au stream allonge celui-ci d'un élément. Le stream est une sort d'objet actif. Il ne nécéssite pas de mécanisme de blocage ou d'exclusion mutuelle tant que chaque variable est reliée à un seul thread
+
+#### 3.3.1 Basic Producer/Consumer
+Avec des threads on peut créer un programme de producteur/consommateur asynchrone  
 
 ```
 declare
@@ -169,6 +201,92 @@ local Xs S in
    {Browse S}
 end
 ```
+Dans le consomateur, le case agit comme un bloquage si il n'y a pas de données à calculer
+
+##### High-Order version
+```
+declare
+fun {Generate N Limit}
+   if N<Limit then
+      N|{Generate N+1 Limit}
+   else
+      nil
+   end
+end
+fun {Map Xs F A}
+   case Xs
+   of X|Xr then {Map Xr F {F X A}}
+   [] nil then A
+   end
+end
+
+local Xs S in
+   thread Xs = {Generate 0 150000} end
+   thread S = {Map Xs fun {$ X A} X+A end 0} end
+   {Browse S}
+end
+```
+
+##### Multiple readers
+
+
+
+
+
+
+
+
+
+Buffer bounded
+
+
+```
+declare
+proc {DGenerate N Xs}
+   case Xs of X|Xr then
+      X=N
+      {DGenerate N+1 Xr}
+   end
+end
+declare
+fun {Dsum ?Xs A Limit}
+   if Limit>0 then
+      X|Xr = Xs
+   in
+      {Dsum Xr A+X Limit-1}
+   else
+      A
+   end
+end
+declare
+proc {Buffer N ?Xs Ys}
+   fun {Startup N ?Xs}
+      if N==0 then Xs
+      else
+	 Xr in Xs=_|Xr {Startup N-1 Xr} end
+   end
+   proc {AskLoop Ys ?Xs ?End}
+      case Ys of Y|Yr then Xr End2 in
+	 Xs=Y|Xr
+	 End = _|End2
+	 {AskLoop Yr Xr End2}
+      end
+   end
+   End = {Startup N Xs}
+in
+   {AskLoop Ys Xs End}
+end
+local Xs Ys S in
+   thread {DGenerate 0 Xs} end
+   thread {Buffer 4 Xs Ys} end
+   thread S = {Dsum Ys 0 150000} end
+   {Browse Xs}{Browse Ys}
+   {Browse S}
+end
+```
+
+
+
 
 #### ping-pong
 a thread need to display ping pong, in alternance with thread1 saying ping and the other pong. how should threads do this ?
