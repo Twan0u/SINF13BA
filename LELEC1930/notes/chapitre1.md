@@ -61,3 +61,4 @@ Le design est lié avec les caractéristiques de la vision humaine:
 
 ![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/101.png)
 ![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/102.png)
+
