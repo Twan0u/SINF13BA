@@ -77,10 +77,10 @@ Les variables auxiliaires sont des variables utilisées dans les pré et/ou post
 
 ## II. Programmes Séquentiels
 ### 2.1 Concepts clés
-**Tableau** : [P]S[R]S'[Q]≡[P]S[R],[R]S'[Q]  
-**Règle de conséquence** : Si P⇒Q alors [P][Q]
+**Tableau** : [P]S[R]S'[Q]=[P]S[R],[R]S'[Q]  
+**Règle de conséquence** : Si P->Q alors [P][Q]
 
-|a| ≡ taille du tableau a
+|a| = taille du tableau a
 
 ### 2.2 La preuve
 Chaque type de preuve possède son propre pattern de preuve.
