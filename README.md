@@ -24,4 +24,8 @@ Il faut remplacer COURS par l'intitulé du cours
 
 ```
     make COURS
-``` 
+```
+
+## Upgrades possibles
+* compilation chapitre par chapitre
+* mettre tous les pdf dans un fichier séparré 
