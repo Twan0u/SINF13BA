@@ -1,4 +1,5 @@
 ## Chapitre 1 : Introduction
+
 * 11 cours magistraux
 * 3-5 Séances d'exercices
 * Examen :
@@ -45,3 +46,18 @@ Une bande de fréquence est une limitation d'un système à sa fréquence. C'est
 Le **multilexage** est la capacitée de faire passer plusieurs signaux par le même support. Ceci est possible via le multiplexage
 
 ### 1.5 Son Stéréo 
+Le son stéréo est composé de 2 signaux : 
+
+* Le S1 (G+D) pour la compatibilité mono
+* Le S2 (G-D)  signal stéréo avec effet de compression 
+	En Stétéo : (G = S1+S2) (D=S1-S2) 
+	
+### 1.6 Image en tv analogique
+Le design est lié avec les caractéristiques de la vision humaine:
+
+* clignotement si inférieure à 50 im/sec
+* si distance est suppérieure à 6x la auteur : inférieure à 500 lignes
+
+
+![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/101.png)
+![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/102.png)
