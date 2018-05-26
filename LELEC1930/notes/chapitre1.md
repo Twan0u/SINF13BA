@@ -62,3 +62,46 @@ Le design est lié avec les caractéristiques de la vision humaine:
 ![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/101.png)
 ![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/102.png)
 
+Avec cette technique, on peut tomber sur des parasites dans l'image si la fréquence du réseau est équivalente à celle de l'image. Pour éviter ce problème, on utilise une technique appelée entrelacement, elle consiste en une division en 2 de l'image (une ligne sur deux), évitant ainsi les parasites. 
+ 
+![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/103.png)
+
+#### 1.6.1 Télévision couleur
+On applique le même principe que précédemment mais avec les 3 couleurs.
+
+![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/104.png)
+
+Cependant, pour des raisons de rétrocompatibilité, les signaux sont encore adaptables sur les anciennes tv en noir et blanc. LE *RGB* devient donc **YUV** : 
+
+* **Y** = 0,3 *R* + 0,59 *G* + 0,11 *B*
+* **U** = 0,493 (*B*-**Y**)
+* **V** = 0,877 (*R*-**Y**)
+
+#### 1.6.2 Télévision Haute définition
+On double la résolution horizontale et verticale en passant du format 4/3 au format 16/9. Cette amélioration apporte une meilleure qualité d'image et un son numérique
+
+### 1.7 Les Signaux numériques 
+Les signaux numériques sont représentées via des bits.
+
+#### Avantages :
+
+* Traitement informatiques et stockages
+* Régénération possible
+* Pas de déterrioration 
+* Codes correcteurs et détecteurs d'erreurs
+
+#### Code correcteur d'erreur
+Un des avantages de la forme binaire est la possibilité de corriger les erreurs. Le principe est d'ajouter de la redondance en rallongant la transmission. Il y a cependant un risque de non détection d'erreurs si elles sont trop nombreuses.
+
+![](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/105.png)
+
+
+
+
+
+
+
+
+
+
+
