@@ -1,31 +1,13 @@
 .SILENT:
-.PHONY: all clear LELEC1930 LFSAB1590 LINGI1122 LINGI1131
 .DEFAULT_GOAL=help
+
+SRC=LELEC1930 LFSAB1590 LINGI1122 LINGI1131
+
+.PHONY: all clear $(SRC)
 ESPACE_HELP=10
 
 
-LELEC1930: ## Compile les notes de Télécom en PDF
-
-	echo $@/notes/chapitre*.md | xargs cat > temp_$@.md
-	pandoc temp_$@.md -s -o $@.pdf
-	echo $@
-	rm temp_$@.md
-
-LFSAB1590: ## Compile les notes de P4 en PDF
-
-	echo $@/notes/chapitre*.md | xargs cat > temp_$@.md
-	pandoc temp_$@.md -s -o $@.pdf
-	echo $@
-	rm temp_$@.md
-
-LINGI1122: ## Compile les notes de MCP en PDF
-
-	echo $@/notes/chapitre*.md | xargs cat > temp_$@.md
-	pandoc temp_$@.md -s -o $@.pdf
-	echo $@
-	rm temp_$@.md
-
-LINGI1131: ## Compile les notes de OZ2 en PDF
+$(SRC): ## Compile les notes de Télécom en PDF
 
 	echo $@/notes/chapitre*.md | xargs cat > temp_$@.md
 	pandoc temp_$@.md -s -o $@.pdf
@@ -33,13 +15,14 @@ LINGI1131: ## Compile les notes de OZ2 en PDF
 	rm temp_$@.md
 
 
-all: LINGI1131 LINGI1122 LFSAB1590 LELEC1930## Compile toutes les notes en PDF ( Pandoc and texlive sont requis )
+all: $(SRC) ## Compile toutes les notes en PDF ( Pandoc and texlive sont requis )
 
 
 
 clear: ## Supprime les fichiers temporaires non indispensables
 
-	rm *.pdf
+	rm -f -- *.pdf
+	rm -f -- temp_*.md
 
 help: ## Affiche l'aide
 
