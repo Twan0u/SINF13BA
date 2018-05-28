@@ -20,7 +20,7 @@ Il existe des :
 * Atténuation
 	* Augmente avec la distance
 		* Lié à perte d'énergie / radiation dans toutes directions
-* Bruits / Interférences
+* Bruits / Interférences : partie d'un signal dont on ne peut pas tirer d'informations
 * Distorsion = modification de la forme (Effet Doppler)
 
 ## 1.3 Représentation de l'information
@@ -33,7 +33,7 @@ un **Signal numérique** transporte de l'information via des 1 et 0.
 
 On peut transformer un *Signal analogique* en *Signal numérique* via un processus de **Numérisation**
 
-La **transformation de Fourier** est une opération qui transforme un signal (fonction intégrable sur R) en une autre fonction, décrivant le spectre fréquentiel de cette dernière.
+La **transformation de Fourier** est transforme un signal en une somme de sinusoîdes, décrivant le spectre fréquentiel de cette dernière.
 
 ### 1.4  Bande de Fréquences
 Une bande de fréquence est une limitation d'un système à sa fréquence. C'est obligatoire pour : 
@@ -41,7 +41,9 @@ Une bande de fréquence est une limitation d'un système à sa fréquence. C'est
 * la standardisation  et la coexistance des systèmes
 * Limite physique des circuits électroniques 
 
-**Modulation** : Transposition du signal autour de la fréquence souhaitée. 
+**Modulation** : Transposition du signal autour de la fréquence souhaitée. Cette technique est utilisée pour partager diférentes bandes de fréquences.
+
+Un **signal modulé** est un signal modulant mis sur une porteuse à la fréquence désirée
 
 Le **multilexage** est la capacitée de faire passer plusieurs signaux par le même support. Ceci est possible via le multiplexage
 
@@ -92,17 +94,17 @@ Les signaux numériques sont représentées via des bits.
 Un des avantages de la forme binaire est la possibilité de corriger les erreurs. Le principe est d'ajouter de la redondance en rallongant la transmission. Il y a cependant un risque de non détection d'erreurs si elles sont trop nombreuses.
 
 ### 1.8 échantillonnage
+L'échantillonnage est utilisé pour représenter au mieux la donnée analogique en donnée numérique. Il y parviens généralement bien mais il arrive que cette méthode ait des ratées. On différencie un bon échantillonnage d'un mauvais par sa capacité ou non à retransmettre la donneé. 
+
+**echantillonner** un signal consiste en une capture des valeurs de ce signal à intervalle fixe.
 ![échantillonnage](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/105.png)
-L'échantillonnage est utilisé pour représenter au mieux la donnée analogique en donnée numérique. Il y parviens généralement bien mais il arrive que cette méthode ait des ratées. On différencie un bon échantillonnage d'un mauvais par sa capacité ou non à retransmettre la donneé.
+
 
 **L'aliasing** résulte d'un mauvais échantillonnage.  
 ![Aliasing](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/106.png)
 
 #### 1.8.1 Théorème de Shannon
 La fréquence d'échantillonnage doit être au moins 2 fois la fréquence maximum du signal
-
-* exemples
-    * son hifi : 40kHz ( > 2x15kHz)
 
 
 

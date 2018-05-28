@@ -1,7 +1,12 @@
 ## Chapitre 2 : Lignes de transmission
 ### 2.1 Théorie des lignes
 #### 2.1.1 Caractérisation des lignes
-Quand on souhaite caractériser une ligne, il est interressant de connaître son atténuation ou sa dispersion le long de cette ligne. Ces caractéristiques dépendent de la géométrie des matériaux, des conditions (Impdance, mode, linéarité,...) et d'autres paramètres (paramètre S).
+
+* L'atténuation
+* La distortion
+* Le bruit
+
+Ces caractéristiques dépendent de la géométrie des matériaux, des conditions (Impdance, mode, linéarité,...) et d'autres paramètres (paramètre S).
 
 ##### Types de lignes
 
@@ -17,14 +22,16 @@ Lorsque l'on utilise une ligne, on doit se confronter à une atténuation au cou
 ![Atténuation signal](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/203.png)
 
 ##### Effet pelliculaire
-Aussi appelé Skin effect, il s'agit d'un phénomène qui pousse les électrons à se déposer en couche ( à cause de l'attraction électromagnétique ). On peut compérer ça à du cholesterol.
+Aussi appelé Skin effect, il s'agit d'un phénomène qui pousse les électrons à se déposer en couche ( à cause de l'attraction électromagnétique ). On peut compérer ça à du cholesterol. Cet accumulation d'électrons va diminuer la surface de la ligne qui est effectivement parcourue par le courant. 
 ![Effet Pelliculaire](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/204.png)
+
+Augmentations en chaine :  + Fréquence -> + Effet de peau -> + Résistance -> + Pertes 
 
 ##### Calculs d'amplifications et d'atténuation
 La force des signaux est calculée en dB (Décibels). On retrouve pour ces calculs, une puissance d'entrée (P1) et une puissance de sortie (P2). On calcule une **atténuation** avec la formule $10 log(P1/P2)$. Qui nous donne l'atténuation en dB. On peut par un calcul similaire calculer l'**amplificaion** d'un signal avec la formule $10 log(P2/P1)$ 
 
 ##### Dispersion 
-La dispersion est causée par le *skin effect*. Elle à pour effet de lisser les pulsations électriques
+La dispersion est causée par la tendance de l'onde à s'étaler sur le temps plus la ligne est longue. Elle à pour effet de lisser les pulsations électriques
 ![Dispersion](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/205.png)
 ![Dispersion](https://raw.githubusercontent.com/Twan0u/SINF13BA/master/LELEC1930/img/206.png)
 
