@@ -28,8 +28,11 @@ La généricité est une des conséquences du High-order programming, elle perme
 
 ### 2.6 Embedding
 Les procédures peuvent être mises dans une structure de données, ce qui leur donne plusieurs usages :
+
 * Explicit lazy evaluation (=exécution différée) : construit une petite partie de la structure et le reste en fonction des besoins sur le translated
+
 * Modules : un Record qui groupe ensemble un set d'opérations ensemble
+
 * Software Components : Un ensemble de modules en input et output d'un nouveau modules. On importe ainsi seulement ce dont on a besoin de chaque module
 
 ### 2.7 Data techniques (pattern matching)
